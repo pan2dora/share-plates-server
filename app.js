@@ -1,12 +1,14 @@
 const express = require("express");
+// Define a constant recipeRoutes and require the path
+const recipeRoutes = require("./routes/recipeRoutes");
 //controller routes
 
 //required dependencies
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
-const { status } = require("express/lib/response");
-// const path = require("node:path");
+// const { status } = require("express/lib/response");
+const path = require("node:path");
 // const { contentSecurityPolicy } = require("helmet");
 const app = express();
 
@@ -15,6 +17,8 @@ const PORT = 8080;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
+//Call the use method on the routes
+app.use("/api/recipes", recipeRoutes);
 // app.use(helmet({
 //     contentSecurityPolicy: false,
 // }));
@@ -33,46 +37,6 @@ app.get("/", (req, res, next) => {
 // Basic Routes
 // get all recipes
 
-app.get("/api/recipes", (req, res, next) => {
-  res.status(200).json({
-    success: {
-      message: "You successfully got all the recipes data",
-    },
-    statusCode: 200,
-  });
-});
-
-// Get a single recipe
-app.get("/api/recipes/:id", (req, res, next) => {
-  res.status(200).json({
-    success: { message: "This will send a single recipe by its id" },
-    statusCode: 200,
-  });
-});
-
-//create new recipe
-app.get("/api/recipes/create/new", (req, res, next) => {
-  res.status(200).json({
-    success: { message: "This will create a new recipe" },
-    statusCode: 200,
-  });
-});
-
-//update recipe by id
-
-app.put("/api/recipes/update/:id", (req, res, next) => {
-  res.status(200).json({
-    success: { message: "This will update a recipe by its id" },
-    statusCode: 200,
-  });
-});
-
-app.delete("api/recipes/delete/:id", (req, res, next) => {
-  res.status(200).json({
-    success: { message: "This will update the book by its id" },
-    statusCode: 200,
-  });
-});
 
 app.listen(PORT, () => {
   console.log(
