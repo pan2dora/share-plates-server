@@ -1,45 +1,25 @@
 const express = require("express");
 const router = express.Router();
+const {
+  getAllRecipes,
+  getRecipe,
+  createRecipe,
+  updateRecipe,
+  deleteRecipe,
+} = require("../controllers/recipesControllers");
 
-router.get("/", (req, res, next) => {
-  res.status(200).json({
-    success: {
-      message: "You successfully got all the recipes data",
-    },
-    statusCode: 200,
-  });
-});
+router.get("/", getAllRecipes);
 
 // Get a single recipe
-router.get("/:id", (req, res, next) => {
-  res.status(200).json({
-    success: { message: "This will send a single recipe by its id" },
-    statusCode: 200,
-  });
-});
+router.get("/:_id", getRecipe);
 
 //create new recipe
-router.post("/create/new", (req, res, next) => {
-  res.status(200).json({
-    success: { message: "This will create a new recipe" },
-    statusCode: 200,
-  });
-});
+router.post("/create/new", createRecipe)
 
 //update recipe by id
 
-router.put("/update/:id", (req, res, next) => {
-  res.status(200).json({
-    success: { message: "This will update a recipe by its id" },
-    statusCode: 200,
-  });
-});
+router.put("/update/:_id", updateRecipe)
 
-router.delete("/delete/:id", (req, res, next) => {
-  res.status(200).json({
-    success: { message: "This will delete the book by its id" },
-    statusCode: 200,
-  });
-});
+router.delete("/delete/:_id", deleteRecipe)
 
 module.exports = router;
