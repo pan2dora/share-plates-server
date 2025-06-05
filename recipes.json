@@ -1,0 +1,38 @@
+[
+  {
+   
+    "title": "Shrimp Fried Rice",
+    "image": "public/images/placeholder.png",
+    "blerb": "Blerb goes here"
+  },
+  {
+  
+    "title": "Onigiri",
+    "image": "public/images/placeholder.png",
+    "blerb": "Blerb goes here"
+  },
+  {
+   
+    "title": "Chicken Noodle Soup",
+    "image": "public/images/placeholder.png",
+    "blerb": "Blerb goes here"
+  },
+  {
+  
+    "title": "Feta Pasta",
+    "image": "public/images/placeholder.png",
+    "blerb": "Blerb goes here"
+  },
+  {
+    
+    "title": "Cheeseburger Eggrolls",
+    "image": "public/images/placeholder.png",
+    "blerb": "Blerb goes here"
+  },
+  {
+   
+    "title": "Blooming Onion",
+    "image": "public/images/placeholder.png",
+    "blerb": "Blerb goes here"
+  }
+]
