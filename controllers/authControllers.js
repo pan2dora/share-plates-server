@@ -1,3 +1,6 @@
+const bcrypt = require("bcrypt")
+
+
 const userRoster = require("../data/userInventory");
 
 const register = async (req, res, next) => {
@@ -7,12 +10,13 @@ const register = async (req, res, next) => {
  
 
   try {
-
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
  const newUser = {
-    firstName,
-    lastName,
-    username,
-    password,
+    firstName:firstName,
+    lastName: lastName,
+    username: username,
+    password: hashedPassword,
   };
 
   userRoster.push(newUser);

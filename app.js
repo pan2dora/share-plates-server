@@ -2,8 +2,14 @@ require("dotenv").config(); //summon dotenv lib
 require("./config/connection.js"); //use connect to db
 require("./config/authStrategy.js"); //auth
 
+
+
 const express = require("express");
 const app = express();
+
+const session = require("express-session")
+const passport = require("passport")
+
 const PORT = process.env.PORT || 8080;
 // Define a constant recipeRoutes and require the path
 
