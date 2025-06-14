@@ -1,32 +1,25 @@
 require("dotenv").config(); //summon dotenv lib
+require("dotenv").config(); //summon dotenv lib
 require("./config/connection.js"); //use connect to db
 require("./config/authStrategy.js"); //auth
-
-
-
+//middlware
 const express = require("express");
-const app = express();
-
-const session = require("express-session")
-const passport = require("passport")
-
-const PORT = process.env.PORT || 8080;
-// Define a constant recipeRoutes and require the path
-
-//controller routes
-
-//required dependencies
 const morgan = require("morgan");
+const path = require("node:path");
 const helmet = require("helmet");
 const cors = require("cors");
-// const { status } = require("express/lib/response");
-const path = require("node:path");
-// const { contentSecurityPolicy } = require("helmet");
-const methodOverride = require("method-override");
-const recipeRoutes = require("./routes/recipeRoutes");
-const authRoutes = require("./routes/authRoutes");
 
-app.use(methodOverride("_method"));
+const app = express();
+// Create a const variable called PORT with the value of 8080
+const PORT = process.env.PORT || 8080;
+
+// Auth
+const session = require("express-session");
+const passport = require("passport");
+
+const recipeRoutes = require("./routes/recipeRoutes.js");
+const authRoutes = require("./routes/authRoutes.js");
+
 app.use(helmet());
 
 app.use(cors({ credentials: true, origin: true }));
@@ -36,11 +29,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(methodOverride("_method"));
 
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.SECRECT_KEY,
 
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+//content routes
 //Call the use method on the routes
 
 app.use("/api/recipes", recipeRoutes);
-
 app.use("/api/auth", authRoutes);
 
 //Error handling middleware
@@ -57,12 +66,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-
-
-// app.use(helmet({
-//     contentSecurityPolicy: false,
-// }));
-const siteData = require("./data/siteData");
+const siteData = require("./data/siteData.js");
 
 app.get("/", (req, res, next) => {
   res.status(200).json({
@@ -73,8 +77,6 @@ app.get("/", (req, res, next) => {
     },
   });
 });
-// Basic Routes
-// get all recipes
 
 app.listen(PORT, () => {
   console.log(
