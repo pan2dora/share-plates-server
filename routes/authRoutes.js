@@ -11,10 +11,15 @@ const {
 
 router.post("/register", register);
 // router.get("/login", login);
-router.post("/login", passport.authenticate("local", {
-  failureRedirect: "/login/error",
-  failureMessage: true,
-}), login)
+router.get(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/login/error",
+    failureMessage: true,
+  }),
+  login
+);
+
 router.get("/login/error", (req, res, next) => {
   return res.json("Login Error!");
 });
@@ -22,8 +27,9 @@ router.get("/login/error", (req, res, next) => {
 router.get("/login/local", localLogin);
 router.get("/logout", logout);
 //Auth
-router.get("/login/google",
-    passport.authenticate("google", { scope: ["profile", "email"] })
+router.get(
+  "/login/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
 );
 router.get(
   "/google/callback",
@@ -60,10 +66,9 @@ router.get("/admin", checkAuthentication, (req, res, next) => {
     res.redirect("/unauthenticated");
   }
 });
-router.get("/admin/auth-console", (req,res,next)=>{
-  res.json("The user is authenticated within the auth console")
-})
-
+router.get("/admin/auth-console", (req, res, next) => {
+  res.json("The user is authenticated within the auth console");
+});
 
 router.get("/unauthenticated", (req, res, next) => {
   console.log("Returning to homepage...");
