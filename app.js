@@ -66,13 +66,12 @@ app.use((err, req, res, next) => {
   });
 });
 
-const siteData = require("./data/siteData.js");
+
 
 app.get("/", (req, res, next) => {
   res.status(200).json({
     success: {
       message: "This route points to homepage",
-      data: { siteData },
       statusCode: 200,
     },
   });
