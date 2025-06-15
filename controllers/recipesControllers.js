@@ -51,14 +51,17 @@ const createRecipe = async (req, res, next) => {
   console.log("BODY RECEIVED:", req.body);
 
   try {
-    if (!title || !image || !blerb) {
+    if (!recipe || !image || !about || !item || !instructions) {
       throw new Error("Missing required fields, please review.");
     }
 
     const newRecipe = new Recipe({
-      title,
+      recipe,
       image,
-      blerb,
+      about,
+      item,
+      price,
+      instructions,
     });
 
     await newRecipe.save();
