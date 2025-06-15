@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const User = require("../models/userModel");
+// const User = require("../models/userModel");
 
 const register = async (req, res, next) => {
   const { firstName, lastName, username, password, googleId } = req.body;
