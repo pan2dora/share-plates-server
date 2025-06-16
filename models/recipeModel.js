@@ -19,17 +19,17 @@ const recipeSchema = new Schema({
     trim: true,
   },
   items: {
-    type: [String],
+    type: String,
     required: true,
     trim: true,
   },
   price: {
-    type: [Number],
+    type: Number,
     required: true,
     trim: true,
   },
   instructions: {
-    type: [String],
+    type: String,
     required: true,
     trim: true,
   },
