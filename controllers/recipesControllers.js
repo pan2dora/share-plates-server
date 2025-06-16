@@ -45,13 +45,14 @@ const getRecipe = async (req, res, next) => {
 };
 
 const createRecipe = async (req, res, next) => {
-  // destructure
-  const { title, image, blerb } = req.body;
+  // destructure body
+  const { recipe, image, about, items, price, instructions } = req.body;
 
   console.log("BODY RECEIVED:", req.body);
 
   try {
-    if (!recipe || !image || !about || !item || !instructions) {
+    //Make sure these fields are not empty
+    if (!recipe || !image || !about || !items || !instructions) {
       throw new Error("Missing required fields, please review.");
     }
 
@@ -59,7 +60,7 @@ const createRecipe = async (req, res, next) => {
       recipe,
       image,
       about,
-      item,
+      items,
       price,
       instructions,
     });

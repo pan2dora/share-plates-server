@@ -23,7 +23,6 @@ const recipeSchema = new Schema({
     required: true,
     trim: true,
   },
-
   price: {
     type: [Number],
     required: true,
@@ -34,12 +33,7 @@ const recipeSchema = new Schema({
     required: true,
     trim: true,
   },
-  diet: {
-    type: [String],
-    required: true,
-    trim: true,
-  },
 });
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
- module.exports = Recipe;
+module.exports = Recipe;
