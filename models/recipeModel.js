@@ -19,7 +19,7 @@ const recipeSchema = new Schema({
     trim: true,
   },
   items: {
-    type: String,
+    type: [String],
     required: true,
     trim: true,
   },
@@ -29,7 +29,7 @@ const recipeSchema = new Schema({
     trim: true,
   },
   instructions: {
-    type: String,
+    type: [String],
     required: true,
     trim: true,
   },
