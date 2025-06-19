@@ -27,7 +27,7 @@ const getRecipe = async (req, res, next) => {
     if (!_id) {
       throw new Error("Id is required");
     }
-    const recipe = Recipe.findById(_id);
+    const recipe = await Recipe.findById(_id);
 
     if (!recipe) {
       throw new Error("Recipe not");
