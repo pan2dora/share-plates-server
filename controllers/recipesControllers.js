@@ -102,11 +102,16 @@ const updateRecipe = async (req, res, next) => {
         $set: {
           recipe,
 <<<<<<< HEAD
+<<<<<<< HEAD
           about,
           image,
 =======
            about,
           image,,
+>>>>>>> server-bug-fixes
+=======
+          about,
+          image,
 >>>>>>> server-bug-fixes
         },
       },
