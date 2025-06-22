@@ -1,14 +1,12 @@
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-// const User = require("../models/userModel");
+const User = require("../models/userModels");
 
 const register = async (req, res, next) => {
-  const { firstName, lastName, username, password, googleId } = req.body;
+  const { firstname, lastname, username, password, googleId } = req.body;
   console.log("This works", req.body);
   try {
-    if (error) {
-      return next(error);
-    } else if (!firstName || !username || !password) {
+    if(!firstname || !username || !password) {
       return res.status(400).json({
         error: { message: "Missing required fields." },
         statusCode: 400,
@@ -18,13 +16,13 @@ const register = async (req, res, next) => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const newUser = {
-      firstName: firstName,
-      lastName: lastName,
+    const newUser = new User({
+      firstname: firstname,
+      lastname: lastname,
       username: username,
       password: hashedPassword,
       googleId: googleId,
-    };
+    });
 
     await newUser.save();
 
