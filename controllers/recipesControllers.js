@@ -78,20 +78,20 @@ const createRecipe = async (req, res, next) => {
 };
 
 const updateRecipe = async (req, res, next) => {
-  const { title, image, blerb } = req.body;
+  const { recipe, about, image } = req.body;
   const { _id } = req.params;
   try {
-    if (!title || !image || !blerb) {
-      throw new Error("Missing required fields, please review.");
-    }
+    // if (!recipe || !image || !about) {
+    //   throw new Error("Missing required fields, please review.");
+    // }
 
     const updatedRecipe = await Recipe.findByIdAndUpdate(
       _id,
       {
         $set: {
-          title,
+          recipe,
+          about,
           image,
-          blerb,
         },
       },
       { new: true }
