@@ -24,7 +24,7 @@ router.get("/login/error", (req, res, next) => {
   return res.json("Login Error!");
 });
 
-router.get("/login/local", localLogin);
+router.post("/login/local", localLogin);
 router.get("/logout", logout);
 //Auth
 router.get(
