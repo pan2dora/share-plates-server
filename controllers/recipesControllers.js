@@ -83,8 +83,7 @@ const updateRecipe = async (req, res, next) => {
 =======
     console.log('req.body:', req.body); // Add this
   console.log('req.params:', req.params); // Add this
-  const { recipe, image, about } = req.body;
->>>>>>> server-bug-fixes
+  const { recipe, about, image } = req.body;
   const { _id } = req.params;
  
   try {
