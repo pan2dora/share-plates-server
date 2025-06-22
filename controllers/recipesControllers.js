@@ -93,8 +93,8 @@ const updateRecipe = async (req, res, next) => {
       {
         $set: {
           recipe,
-          image,
           about,
+          image,
         },
       },
       { new: true }
