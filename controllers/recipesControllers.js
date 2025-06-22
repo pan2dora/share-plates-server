@@ -78,10 +78,21 @@ const createRecipe = async (req, res, next) => {
 };
 
 const updateRecipe = async (req, res, next) => {
+<<<<<<< HEAD
   const { recipe, about, image } = req.body;
+=======
+    console.log('req.body:', req.body); // Add this
+  console.log('req.params:', req.params); // Add this
+  const { recipe, image, about } = req.body;
+>>>>>>> server-bug-fixes
   const { _id } = req.params;
+ 
   try {
+<<<<<<< HEAD
     // if (!recipe || !image || !about) {
+=======
+    // if (!title || !image || !blerb) {
+>>>>>>> server-bug-fixes
     //   throw new Error("Missing required fields, please review.");
     // }
 
@@ -90,14 +101,19 @@ const updateRecipe = async (req, res, next) => {
       {
         $set: {
           recipe,
+<<<<<<< HEAD
           about,
           image,
+=======
+           about,
+          image,,
+>>>>>>> server-bug-fixes
         },
       },
       { new: true }
     );
 
-    if (!updateRecipe) {
+    if (!updatedRecipe) {
       throw new Error("Book not found");
     }
 
