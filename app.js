@@ -10,6 +10,21 @@ const helmet = require("helmet");
 const cors = require("cors");
 
 const app = express();
+//image handling
+const multer = require("multer");
+
+const storage = multer.memoryStorage({
+  destination: function (req, file, cb) {
+    cb(null, "data/uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage });
+
+
 // Create a const variable called PORT with the value of 8080
 const PORT = process.env.PORT || 8080;
 
@@ -66,8 +81,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-
-
 app.get("/", (req, res, next) => {
   res.status(200).json({
     success: {
@@ -75,6 +88,12 @@ app.get("/", (req, res, next) => {
       statusCode: 200,
     },
   });
+});
+
+//image handling
+// source: https://www.youtube.com/watch?v=i8yxx6V9UdM&ab_channel=JamesQQuick and npm website
+app.post("/upload", upload.single("file"), (req, res) => {
+  res.json(req.file);
 });
 
 app.listen(PORT, () => {

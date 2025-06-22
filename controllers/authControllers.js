@@ -30,10 +30,6 @@ const register = async (req, res, next) => {
 
     req.login(newUser, (error) => {
       newUser.password = undefined;
-
-      if (error) {
-        return next(error);
-      }
     });
 
     return res.status(201).json({
@@ -47,8 +43,8 @@ const register = async (req, res, next) => {
 };
 
 const login = async (req, res, next) => {
-  if (err) {
-    return next(err);
+  if (error) {
+    return next(error);
   }
 
   const userCopy = { ...req.user._doc };
@@ -62,15 +58,15 @@ const login = async (req, res, next) => {
 };
 
 const logout = async (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
+  req.logout((error) => {
+    if (error) {
       return next(err);
     }
   });
 
-  req.session.destroy((err) => {
-    if (err) {
-      return next(err);
+  req.session.destroy((error) => {
+    if (error) {
+      return next(error);
     }
   });
 
