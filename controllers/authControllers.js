@@ -6,7 +6,7 @@ const register = async (req, res, next) => {
   const { firstname, lastname, username, password, googleId } = req.body;
   console.log("This works", req.body);
   try {
-    if(!firstname || !username || !password) {
+    if (!firstname || !username || !password) {
       return res.status(400).json({
         error: { message: "Missing required fields." },
         statusCode: 400,
@@ -85,8 +85,6 @@ const logout = async (req, res, next) => {
 };
 
 const localLogin = async (req, res, next) => {
-  const userCopy = { ...req.user._doc };
-  userCopy.password = undefined;
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(err);
@@ -101,13 +99,13 @@ const localLogin = async (req, res, next) => {
       if (err) {
         return next(err);
       }
-
+      const userCopy = { ...req.user._doc };
+      userCopy.password = undefined;
       console.log(userCopy);
 
       res.status(200).json({
         success: { message: "Login Successful" },
         data: { user: userCopy },
-        result: result,
         statusCode: 200,
       });
     });
